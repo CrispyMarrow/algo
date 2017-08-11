@@ -5,20 +5,23 @@ package warmup;
  * - there might be duplicates and counting the same element twice is NOT ok (might impact some solutions)
  * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted
  */
-public class SortedTwoSum {
-    public int[] twoSum(int[] nums, int target) {
-        // Initialize variables upon creation, saves time
-        int i1 = 0, i2 = nums.length - 1;
-        while(i1 < i2) {
-            int sum = nums[i1] + nums[i2];
-            if(sum < target)
-                i1++;
-            else if(sum > target)
-                i2--;
-            else
-                // Construct arrays in place whenever possible, saves you time
-                return new int[]{i1 + 1, i2 + 1};
+
+public class Solution {
+    public int[] TwoSum(int[] numbers, int target) {
+        int first = 1;
+        int last = numbers.Length - 1;
+        
+        while ( first < last ) {
+            int sum = numbers[first] + numbers[last];
+            if ( sum == target ) { return new int[]{first++, last++}; }
+            
+            if( sum > target ) {
+                last--;
+            } else {
+                first++;
+            }                        
         }
-        return new int[]{-1, -1};
+        
+        return new int[]{0,0};
     }
 }
